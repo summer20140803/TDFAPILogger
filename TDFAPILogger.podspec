@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   provide developer convenience when compose some api request code..
                    DESC
 
-  s.homepage     = "http://git@git.2dfire-inc.com:ios/TDFAPILogger.git"
+  s.homepage     = "git@git.2dfire-inc.com:ios/TDFAPILogger.git"
 
   s.license      = "LICENSE"
   s.author       = { "oufen" => "oufen@2dfire.com" }
