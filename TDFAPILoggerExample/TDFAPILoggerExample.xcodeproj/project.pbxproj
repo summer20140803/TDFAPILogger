@@ -1,0 +1,600 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18FE4CD51F62795300ECAA1F /* TDFAPILoggerExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4CD41F62795300ECAA1F /* TDFAPILoggerExampleTests.m */; };
+		18FE4CF11F6280A000ECAA1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4CE11F6280A000ECAA1F /* AppDelegate.m */; };
+		18FE4CF21F6280A000ECAA1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FE4CE21F6280A000ECAA1F /* Assets.xcassets */; };
+		18FE4CF31F6280A000ECAA1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FE4CE31F6280A000ECAA1F /* LaunchScreen.storyboard */; };
+		18FE4CF41F6280A000ECAA1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FE4CE51F6280A000ECAA1F /* Main.storyboard */; };
+		18FE4CF51F6280A000ECAA1F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18FE4CE71F6280A000ECAA1F /* Info.plist */; };
+		18FE4CF61F6280A000ECAA1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4CE81F6280A000ECAA1F /* main.m */; };
+		18FE4CF71F6280A000ECAA1F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4CEA1F6280A000ECAA1F /* ViewController.m */; };
+		18FE4CF81F6280A000ECAA1F /* TDFAPILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4CED1F6280A000ECAA1F /* TDFAPILogger.m */; };
+		18FE4CF91F6280A000ECAA1F /* TDFAPILoggerTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4CF01F6280A000ECAA1F /* TDFAPILoggerTrigger.m */; };
+		3249793A6D725720945458B1 /* libPods-TDFAPILoggerExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 904C724D7DF6C626DB7AF1E9 /* libPods-TDFAPILoggerExample.a */; };
+		65DE7852A4C224A81CE71FCA /* libPods-TDFAPILoggerExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A30219253350B14BF5456AC7 /* libPods-TDFAPILoggerExampleTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18FE4CD11F62795300ECAA1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18FE4CAF1F62795300ECAA1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18FE4CB61F62795300ECAA1F;
+			remoteInfo = TDFAPILoggerExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		18FE4CB71F62795300ECAA1F /* TDFAPILoggerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDFAPILoggerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FE4CD01F62795300ECAA1F /* TDFAPILoggerExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TDFAPILoggerExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FE4CD41F62795300ECAA1F /* TDFAPILoggerExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDFAPILoggerExampleTests.m; sourceTree = "<group>"; };
+		18FE4CD61F62795300ECAA1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18FE4CE01F6280A000ECAA1F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		18FE4CE11F6280A000ECAA1F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		18FE4CE21F6280A000ECAA1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18FE4CE41F6280A000ECAA1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18FE4CE61F6280A000ECAA1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18FE4CE71F6280A000ECAA1F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18FE4CE81F6280A000ECAA1F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		18FE4CE91F6280A000ECAA1F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		18FE4CEA1F6280A000ECAA1F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		18FE4CEC1F6280A000ECAA1F /* TDFAPILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDFAPILogger.h; sourceTree = "<group>"; };
+		18FE4CED1F6280A000ECAA1F /* TDFAPILogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDFAPILogger.m; sourceTree = "<group>"; };
+		18FE4CEF1F6280A000ECAA1F /* TDFAPILoggerTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDFAPILoggerTrigger.h; sourceTree = "<group>"; };
+		18FE4CF01F6280A000ECAA1F /* TDFAPILoggerTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDFAPILoggerTrigger.m; sourceTree = "<group>"; };
+		249AF195DD03056E873A3ECD /* Pods-TDFAPILoggerExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDFAPILoggerExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TDFAPILoggerExampleTests/Pods-TDFAPILoggerExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4CBF7470A065A278EDEA4496 /* Pods-TDFAPILoggerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDFAPILoggerExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TDFAPILoggerExample/Pods-TDFAPILoggerExample.debug.xcconfig"; sourceTree = "<group>"; };
+		54218288843370B16996C436 /* Pods-TDFAPILoggerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDFAPILoggerExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-TDFAPILoggerExample/Pods-TDFAPILoggerExample.release.xcconfig"; sourceTree = "<group>"; };
+		904C724D7DF6C626DB7AF1E9 /* libPods-TDFAPILoggerExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TDFAPILoggerExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A30219253350B14BF5456AC7 /* libPods-TDFAPILoggerExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TDFAPILoggerExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA35D894FD69E97875CB8E83 /* Pods-TDFAPILoggerExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDFAPILoggerExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TDFAPILoggerExampleTests/Pods-TDFAPILoggerExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18FE4CB41F62795300ECAA1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3249793A6D725720945458B1 /* libPods-TDFAPILoggerExample.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FE4CCD1F62795300ECAA1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65DE7852A4C224A81CE71FCA /* libPods-TDFAPILoggerExampleTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08E2A9527F8E8E7B108209FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				904C724D7DF6C626DB7AF1E9 /* libPods-TDFAPILoggerExample.a */,
+				A30219253350B14BF5456AC7 /* libPods-TDFAPILoggerExampleTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18FE4CAE1F62795300ECAA1F = {
+			isa = PBXGroup;
+			children = (
+				18FE4CB91F62795300ECAA1F /* TDFAPILoggerExample */,
+				18FE4CD31F62795300ECAA1F /* TDFAPILoggerExampleTests */,
+				18FE4CB81F62795300ECAA1F /* Products */,
+				1EDBBAEAA032A5666EBCB3E0 /* Pods */,
+				08E2A9527F8E8E7B108209FF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		18FE4CB81F62795300ECAA1F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18FE4CB71F62795300ECAA1F /* TDFAPILoggerExample.app */,
+				18FE4CD01F62795300ECAA1F /* TDFAPILoggerExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18FE4CB91F62795300ECAA1F /* TDFAPILoggerExample */ = {
+			isa = PBXGroup;
+			children = (
+				18FE4CDF1F6280A000ECAA1F /* AppBase */,
+				18FE4CEB1F6280A000ECAA1F /* Classes */,
+				18FE4CEE1F6280A000ECAA1F /* Guide */,
+			);
+			path = TDFAPILoggerExample;
+			sourceTree = "<group>";
+		};
+		18FE4CD31F62795300ECAA1F /* TDFAPILoggerExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				18FE4CD41F62795300ECAA1F /* TDFAPILoggerExampleTests.m */,
+				18FE4CD61F62795300ECAA1F /* Info.plist */,
+			);
+			path = TDFAPILoggerExampleTests;
+			sourceTree = "<group>";
+		};
+		18FE4CDF1F6280A000ECAA1F /* AppBase */ = {
+			isa = PBXGroup;
+			children = (
+				18FE4CE01F6280A000ECAA1F /* AppDelegate.h */,
+				18FE4CE11F6280A000ECAA1F /* AppDelegate.m */,
+				18FE4CE21F6280A000ECAA1F /* Assets.xcassets */,
+				18FE4CE31F6280A000ECAA1F /* LaunchScreen.storyboard */,
+				18FE4CE51F6280A000ECAA1F /* Main.storyboard */,
+				18FE4CE71F6280A000ECAA1F /* Info.plist */,
+				18FE4CE81F6280A000ECAA1F /* main.m */,
+				18FE4CE91F6280A000ECAA1F /* ViewController.h */,
+				18FE4CEA1F6280A000ECAA1F /* ViewController.m */,
+			);
+			path = AppBase;
+			sourceTree = "<group>";
+		};
+		18FE4CEB1F6280A000ECAA1F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				18FE4CEC1F6280A000ECAA1F /* TDFAPILogger.h */,
+				18FE4CED1F6280A000ECAA1F /* TDFAPILogger.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		18FE4CEE1F6280A000ECAA1F /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				18FE4CEF1F6280A000ECAA1F /* TDFAPILoggerTrigger.h */,
+				18FE4CF01F6280A000ECAA1F /* TDFAPILoggerTrigger.m */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
+		1EDBBAEAA032A5666EBCB3E0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4CBF7470A065A278EDEA4496 /* Pods-TDFAPILoggerExample.debug.xcconfig */,
+				54218288843370B16996C436 /* Pods-TDFAPILoggerExample.release.xcconfig */,
+				249AF195DD03056E873A3ECD /* Pods-TDFAPILoggerExampleTests.debug.xcconfig */,
+				BA35D894FD69E97875CB8E83 /* Pods-TDFAPILoggerExampleTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18FE4CB61F62795300ECAA1F /* TDFAPILoggerExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18FE4CD91F62795300ECAA1F /* Build configuration list for PBXNativeTarget "TDFAPILoggerExample" */;
+			buildPhases = (
+				E17756B4A683AFE3B3307586 /* [CP] Check Pods Manifest.lock */,
+				18FE4CB31F62795300ECAA1F /* Sources */,
+				18FE4CB41F62795300ECAA1F /* Frameworks */,
+				18FE4CB51F62795300ECAA1F /* Resources */,
+				720D5E72CE86736594FC1666 /* [CP] Embed Pods Frameworks */,
+				5A1186D3648A391B397E0CAE /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TDFAPILoggerExample;
+			productName = TDFAPILoggerExample;
+			productReference = 18FE4CB71F62795300ECAA1F /* TDFAPILoggerExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18FE4CCF1F62795300ECAA1F /* TDFAPILoggerExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18FE4CDC1F62795300ECAA1F /* Build configuration list for PBXNativeTarget "TDFAPILoggerExampleTests" */;
+			buildPhases = (
+				E12307A29385256844A9323B /* [CP] Check Pods Manifest.lock */,
+				18FE4CCC1F62795300ECAA1F /* Sources */,
+				18FE4CCD1F62795300ECAA1F /* Frameworks */,
+				18FE4CCE1F62795300ECAA1F /* Resources */,
+				2A8DC57973A8E339A6E0B092 /* [CP] Embed Pods Frameworks */,
+				CE310475887ED7A20A013DB2 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18FE4CD21F62795300ECAA1F /* PBXTargetDependency */,
+			);
+			name = TDFAPILoggerExampleTests;
+			productName = TDFAPILoggerExampleTests;
+			productReference = 18FE4CD01F62795300ECAA1F /* TDFAPILoggerExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18FE4CAF1F62795300ECAA1F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = TDF;
+				TargetAttributes = {
+					18FE4CB61F62795300ECAA1F = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 6K3MJR566S;
+						ProvisioningStyle = Automatic;
+					};
+					18FE4CCF1F62795300ECAA1F = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 6K3MJR566S;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 18FE4CB61F62795300ECAA1F;
+					};
+				};
+			};
+			buildConfigurationList = 18FE4CB21F62795300ECAA1F /* Build configuration list for PBXProject "TDFAPILoggerExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18FE4CAE1F62795300ECAA1F;
+			productRefGroup = 18FE4CB81F62795300ECAA1F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18FE4CB61F62795300ECAA1F /* TDFAPILoggerExample */,
+				18FE4CCF1F62795300ECAA1F /* TDFAPILoggerExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18FE4CB51F62795300ECAA1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FE4CF51F6280A000ECAA1F /* Info.plist in Resources */,
+				18FE4CF41F6280A000ECAA1F /* Main.storyboard in Resources */,
+				18FE4CF21F6280A000ECAA1F /* Assets.xcassets in Resources */,
+				18FE4CF31F6280A000ECAA1F /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FE4CCE1F62795300ECAA1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A8DC57973A8E339A6E0B092 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TDFAPILoggerExampleTests/Pods-TDFAPILoggerExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A1186D3648A391B397E0CAE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TDFAPILoggerExample/Pods-TDFAPILoggerExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		720D5E72CE86736594FC1666 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TDFAPILoggerExample/Pods-TDFAPILoggerExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE310475887ED7A20A013DB2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TDFAPILoggerExampleTests/Pods-TDFAPILoggerExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E12307A29385256844A9323B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E17756B4A683AFE3B3307586 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18FE4CB31F62795300ECAA1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FE4CF71F6280A000ECAA1F /* ViewController.m in Sources */,
+				18FE4CF91F6280A000ECAA1F /* TDFAPILoggerTrigger.m in Sources */,
+				18FE4CF81F6280A000ECAA1F /* TDFAPILogger.m in Sources */,
+				18FE4CF61F6280A000ECAA1F /* main.m in Sources */,
+				18FE4CF11F6280A000ECAA1F /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FE4CCC1F62795300ECAA1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FE4CD51F62795300ECAA1F /* TDFAPILoggerExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18FE4CD21F62795300ECAA1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18FE4CB61F62795300ECAA1F /* TDFAPILoggerExample */;
+			targetProxy = 18FE4CD11F62795300ECAA1F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		18FE4CE31F6280A000ECAA1F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18FE4CE41F6280A000ECAA1F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		18FE4CE51F6280A000ECAA1F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18FE4CE61F6280A000ECAA1F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18FE4CD71F62795300ECAA1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		18FE4CD81F62795300ECAA1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18FE4CDA1F62795300ECAA1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CBF7470A065A278EDEA4496 /* Pods-TDFAPILoggerExample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6K3MJR566S;
+				INFOPLIST_FILE = "$(SRCROOT)/TDFAPILoggerExample/AppBase/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = szy.independent.TDFAPILoggerExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		18FE4CDB1F62795300ECAA1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54218288843370B16996C436 /* Pods-TDFAPILoggerExample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6K3MJR566S;
+				INFOPLIST_FILE = "$(SRCROOT)/TDFAPILoggerExample/AppBase/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = szy.independent.TDFAPILoggerExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		18FE4CDD1F62795300ECAA1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 249AF195DD03056E873A3ECD /* Pods-TDFAPILoggerExampleTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 6K3MJR566S;
+				INFOPLIST_FILE = TDFAPILoggerExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = szy.independent.TDFAPILoggerExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TDFAPILoggerExample.app/TDFAPILoggerExample";
+			};
+			name = Debug;
+		};
+		18FE4CDE1F62795300ECAA1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA35D894FD69E97875CB8E83 /* Pods-TDFAPILoggerExampleTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 6K3MJR566S;
+				INFOPLIST_FILE = TDFAPILoggerExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = szy.independent.TDFAPILoggerExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TDFAPILoggerExample.app/TDFAPILoggerExample";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18FE4CB21F62795300ECAA1F /* Build configuration list for PBXProject "TDFAPILoggerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FE4CD71F62795300ECAA1F /* Debug */,
+				18FE4CD81F62795300ECAA1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18FE4CD91F62795300ECAA1F /* Build configuration list for PBXNativeTarget "TDFAPILoggerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FE4CDA1F62795300ECAA1F /* Debug */,
+				18FE4CDB1F62795300ECAA1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18FE4CDC1F62795300ECAA1F /* Build configuration list for PBXNativeTarget "TDFAPILoggerExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FE4CDD1F62795300ECAA1F /* Debug */,
+				18FE4CDE1F62795300ECAA1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18FE4CAF1F62795300ECAA1F /* Project object */;
+}
