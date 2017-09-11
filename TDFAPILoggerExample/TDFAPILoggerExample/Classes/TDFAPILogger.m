@@ -233,6 +233,31 @@ static void * TDFAPILoggerTakeOffDate = &TDFAPILoggerTakeOffDate;
         if ([request HTTPBody]) {
             httpBody = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
         }
+        // if a request does not set HTTPBody, so here it's need to check HTTPBodyStream
+        else if ([request HTTPBodyStream]) {
+            NSInputStream *httpBodyStream = request.HTTPBodyStream;
+            
+            [httpBodyStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            [httpBodyStream open];
+            
+            uint8_t *buffer = NULL;
+            NSUInteger length = 0;
+            while ([httpBodyStream hasBytesAvailable]) {
+                buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024);
+                NSInteger bytesRead = [httpBodyStream read:buffer maxLength:sizeof(uint8_t) * 1024];
+                
+                if (httpBodyStream.streamError || bytesRead < 0) {
+                    break;
+                }
+                length += bytesRead;
+            }
+            [httpBodyStream close];
+            
+            NSData *bodyStreamData = [NSData dataWithBytes:buffer length:length];
+            free(buffer);
+            
+            httpBody = [[NSString alloc] initWithData:bodyStreamData encoding:NSUTF8StringEncoding];
+        }
         
         if (httpBody.length) {
             NSArray *params = [httpBody componentsSeparatedByString:@"&"];
@@ -243,14 +268,20 @@ static void * TDFAPILoggerTakeOffDate = &TDFAPILoggerTakeOffDate;
                 if ([pair.firstObject respondsToSelector:@selector(stringByRemovingPercentEncoding)]) {
                     key = [pair.firstObject stringByRemovingPercentEncoding];
                 }else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                     key = [pair.firstObject stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+#pragma clang diagnostic pop
                 }
                 
                 NSString *value = nil;
                 if ([pair.lastObject respondsToSelector:@selector(stringByRemovingPercentEncoding)]) {
                     value = [pair.lastObject stringByRemovingPercentEncoding];
                 }else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                     value = [pair.lastObject stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+#pragma clang diagnostic pop
                 }
                 value = [value stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
                 
