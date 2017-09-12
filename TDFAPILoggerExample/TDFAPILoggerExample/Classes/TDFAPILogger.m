@@ -11,6 +11,7 @@
 #import <objc/runtime.h>
 
 typedef void (^tdfJsonResponsePrettyPrintFormatBlock)(id betterResponseString);
+typedef void (^tdfHttpBodyStreamParseBlock)(NSData *streamData);
 static dispatch_queue_t _tdfJsonResponseFormatQueue;
 
 BOOL   TDFAPILoggerEnabled         = YES;
@@ -62,6 +63,31 @@ static void TDFAPILoggerAsyncJsonResponsePrettyFormat(id response, tdfJsonRespon
         dispatch_async(dispatch_get_main_queue(), ^{
             id better = formatError ? response : prettyJsonString;
             !block ?: block(better);
+        });
+    });
+}
+
+static void TDFAPILoggerAsyncHttpBodyStreamParse(NSInputStream *bodyStream, tdfHttpBodyStreamParseBlock block) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [bodyStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        [bodyStream open];
+        
+        uint8_t *buffer = NULL;
+        NSMutableData *streamData = [NSMutableData data];
+        
+        while ([bodyStream hasBytesAvailable]) {
+            buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024);
+            NSInteger length = [bodyStream read:buffer maxLength:sizeof(uint8_t) * 1024];
+            if (bodyStream.streamError || length <= 0) {
+                break;
+            }
+            [streamData appendBytes:buffer length:length];
+            free(buffer);
+        }
+        [bodyStream close];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            !block ?: block([streamData copy]);
         });
     });
 }
@@ -118,21 +144,21 @@ static void TDFAPILoggerShowError(NSString *fmrtStr) {
     if (self = [super init]) {
         // default settings..
         _requestLoggerElements =
-                TDFAPILoggerRequestElementTakeOffTime |
-                TDFAPILoggerRequestElementMethod |
-                TDFAPILoggerRequestElementVaildURL |
-                TDFAPILoggerRequestElementHeaderFields |
-                TDFAPILoggerRequestElementHTTPBody |
-                TDFAPILoggerRequestElementTaskIdentifier;
+        TDFAPILoggerRequestElementTakeOffTime |
+        TDFAPILoggerRequestElementMethod |
+        TDFAPILoggerRequestElementVaildURL |
+        TDFAPILoggerRequestElementHeaderFields |
+        TDFAPILoggerRequestElementHTTPBody |
+        TDFAPILoggerRequestElementTaskIdentifier;
         _responseLoggerElements =
-                TDFAPILoggerResponseElementLandTime |
-                TDFAPILoggerResponseElementTimeConsuming |
-                TDFAPILoggerResponseElementMethod |
-                TDFAPILoggerResponseElementVaildURL |
-                TDFAPILoggerResponseElementHeaderFields |
-                TDFAPILoggerResponseElementStatusCode |
-                TDFAPILoggerResponseElementResponse |
-                TDFAPILoggerResponseElementTaskIdentifier;
+        TDFAPILoggerResponseElementLandTime |
+        TDFAPILoggerResponseElementTimeConsuming |
+        TDFAPILoggerResponseElementMethod |
+        TDFAPILoggerResponseElementVaildURL |
+        TDFAPILoggerResponseElementHeaderFields |
+        TDFAPILoggerResponseElementStatusCode |
+        TDFAPILoggerResponseElementResponse |
+        TDFAPILoggerResponseElementTaskIdentifier;
     }
     return self;
 }
@@ -179,7 +205,7 @@ static void * TDFAPILoggerTakeOffDate = &TDFAPILoggerTakeOffDate;
         return;
     }
     
-    nextStep_Req:;
+nextStep_Req:;
     objc_setAssociatedObject(notification.object, TDFAPILoggerTakeOffDate, [NSDate date], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     NSMutableString *frmtString = @"".mutableCopy;
@@ -227,8 +253,7 @@ static void * TDFAPILoggerTakeOffDate = &TDFAPILoggerTakeOffDate;
     }
     
     if (self.requestLoggerElements & TDFAPILoggerRequestElementHTTPBody) {
-        NSString *httpBody = nil;
-        NSMutableString *httpBodyStr = @"".mutableCopy;
+        __block id httpBody = nil;
         
         if ([request HTTPBody]) {
             httpBody = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
@@ -237,29 +262,20 @@ static void * TDFAPILoggerTakeOffDate = &TDFAPILoggerTakeOffDate;
         else if ([request HTTPBodyStream]) {
             NSInputStream *httpBodyStream = request.HTTPBodyStream;
             
-            [httpBodyStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-            [httpBodyStream open];
-            
-            uint8_t *buffer = NULL;
-            NSUInteger length = 0;
-            while ([httpBodyStream hasBytesAvailable]) {
-                buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024);
-                NSInteger bytesRead = [httpBodyStream read:buffer maxLength:sizeof(uint8_t) * 1024];
+            TDFAPILoggerAsyncHttpBodyStreamParse(httpBodyStream, ^(NSData *streamData) {
+                httpBody = streamData;
+                [frmtString appendFormat:@"\n<Body>\n\t%@", httpBody];
                 
-                if (httpBodyStream.streamError || bytesRead < 0) {
-                    break;
-                }
-                length += bytesRead;
-            }
-            [httpBodyStream close];
-            
-            NSData *bodyStreamData = [NSData dataWithBytes:buffer length:length];
-            free(buffer);
-            
-            httpBody = [[NSString alloc] initWithData:bodyStreamData encoding:NSUTF8StringEncoding];
+                TDFAPILoggerShowRequest([frmtString copy]);
+                
+                !self.requestLogReporter ?: self.requestLogReporter([frmtString copy]);
+            });
+            return;
         }
         
-        if (httpBody.length) {
+        if ([httpBody isKindOfClass:[NSString class]] && [(NSString *)httpBody length]) {
+            NSMutableString *httpBodyStr = @"".mutableCopy;
+            
             NSArray *params = [httpBody componentsSeparatedByString:@"&"];
             [params enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSArray *pair = [obj componentsSeparatedByString:@"="];
@@ -322,7 +338,7 @@ static void * TDFAPILoggerTakeOffDate = &TDFAPILoggerTakeOffDate;
         return;
     }
     
-    nextStep_Resp:;
+nextStep_Resp:;
     NSUInteger responseStatusCode = 0;
     NSDictionary *responseHeaderFields = nil;
     // NSHTTPURLResponse inherit NSURLResponse，it has statusCode and allHeaderFields prop..
