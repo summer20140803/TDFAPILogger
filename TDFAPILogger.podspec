@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TDFAPILogger"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "API日志"
 
   s.description  = <<-DESC
