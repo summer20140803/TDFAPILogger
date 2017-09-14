@@ -70,6 +70,7 @@ static void TDFAPILoggerAsyncJsonResponsePrettyFormat(id response, tdfJsonRespon
 static void TDFAPILoggerAsyncHttpBodyStreamParse(NSInputStream *originBodyStream, tdfHttpBodyStreamParseBlock block) {
     
     // this is a bug may cause image can't upload when other thread read the same bodystream
+    // copy origin body stream and use the new can avoid this issure
     NSInputStream *bodyStream = [originBodyStream copy];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -431,11 +432,11 @@ nextStep_Resp:;
     
     if (error) {
         TDFAPILoggerShowError([frmtString copy]);
+        !self.errorLogReporter ?: self.errorLogReporter([frmtString copy]);
     } else {
         TDFAPILoggerShowResponse([frmtString copy]);
+        !self.responseLogReporter ?: self.responseLogReporter([frmtString copy]);
     }
-    
-    !self.responseLogReporter ?: self.responseLogReporter([frmtString copy]);
 }
 
 @end

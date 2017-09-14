@@ -99,16 +99,23 @@ typedef NS_OPTIONS(NSUInteger, TDFAPILoggerResponseElement) {
 /**
  API请求日志汇报者，
  会在格式化后(不包括emoji)的请求日志通过这个block传给外部，
- 先预留，交给TDFScreenDebugger使用
+ 交给TDFScreenDebugger使用
  */
 @property (nonatomic,   copy) void(^requestLogReporter)(NSString *requestLog);
 
 /**
- API响应/异常日志汇报者，
- 会在格式化后(不包括emoji)的响应/异常日志通过这个block传给外部，
- 先预留，交给TDFScreenDebugger使用
+ API响应日志汇报者，
+ 会在格式化后(不包括emoji)的成功响应通过这个block传给外部，
+ 交给TDFScreenDebugger使用
  */
 @property (nonatomic,   copy) void(^responseLogReporter)(NSString *responseLog);
+
+/**
+ API异常日志汇报者，
+ 会在格式化后(不包括emoji)的异常通过这个block传给外部，
+ 交给TDFScreenDebugger使用
+ */
+@property (nonatomic,   copy) void(^errorLogReporter)(NSString *errorLog);
 
 + (instancetype)sharedInstance;
 
