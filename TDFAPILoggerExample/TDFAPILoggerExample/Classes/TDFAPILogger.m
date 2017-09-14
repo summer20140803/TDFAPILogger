@@ -67,7 +67,11 @@ static void TDFAPILoggerAsyncJsonResponsePrettyFormat(id response, tdfJsonRespon
     });
 }
 
-static void TDFAPILoggerAsyncHttpBodyStreamParse(NSInputStream *bodyStream, tdfHttpBodyStreamParseBlock block) {
+static void TDFAPILoggerAsyncHttpBodyStreamParse(NSInputStream *originBodyStream, tdfHttpBodyStreamParseBlock block) {
+    
+    // this is a bug may cause image can't upload when other thread read the same bodystream
+    NSInputStream *bodyStream = [originBodyStream copy];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [bodyStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         [bodyStream open];
@@ -339,7 +343,7 @@ nextStep_Req:;
     }
     
 nextStep_Resp:;
-    NSUInteger responseStatusCode = 0;
+    NSInteger responseStatusCode = 0;
     NSDictionary *responseHeaderFields = nil;
     // NSHTTPURLResponse inherit NSURLResponse，it has statusCode and allHeaderFields prop..
     if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
@@ -388,7 +392,7 @@ nextStep_Resp:;
     
     if (self.responseLoggerElements & TDFAPILoggerResponseElementStatusCode) {
         if (responseStatusCode) {
-            [frmtString appendFormat:@"\n<状态码>     %lu", responseStatusCode];
+            [frmtString appendFormat:@"\n<状态码>     %ld", responseStatusCode];
         }
     }
     
