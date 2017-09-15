@@ -214,10 +214,13 @@ nextStep_Req:;
     objc_setAssociatedObject(notification.object, TDFAPILoggerTakeOffDate, [NSDate date], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     NSMutableString *frmtString = @"".mutableCopy;
+    TDFALRequestModel *requestDescriptionModel = [[TDFALRequestModel alloc] init];
     
     if (self.requestLoggerElements & TDFAPILoggerRequestElementTaskIdentifier) {
         NSString *taskIdentifier = TDFAPILoggerTaskIdentifierFromAFNNotification(notification);
-        [frmtString appendFormat:@"\n<API序列号> %@", taskIdentifier];
+        NSString *taskIdentifierDes = [NSString stringWithFormat:@"\n<API序列号> %@", taskIdentifier];
+        [frmtString appendString:taskIdentifierDes];
+        requestDescriptionModel.taskIdentifier = taskIdentifierDes;
     }
     
     NSURLSessionTask *task = (NSURLSessionTask *)notification.object;
@@ -225,11 +228,15 @@ nextStep_Req:;
     if (self.defaultTaskDescriptionObj) {
         NSString *taskDescriptionSetByAFN = [NSString stringWithFormat:@"%p", self.defaultTaskDescriptionObj];
         if (taskDescLength && ![task.taskDescription isEqualToString:taskDescriptionSetByAFN]) {
-            [frmtString appendFormat:@"\n<API描述>    %@", task.taskDescription];
+            NSString *apiTaskDes = [NSString stringWithFormat:@"\n<API描述>    %@", task.taskDescription];
+            [frmtString appendString:apiTaskDes];
+            requestDescriptionModel.taskDescription = apiTaskDes;
         }
     } else {
         if (taskDescLength) {
-            [frmtString appendFormat:@"\n<API描述>    %@", task.taskDescription];
+            NSString *apiTaskDes = [NSString stringWithFormat:@"\n<API描述>    %@", task.taskDescription];
+            [frmtString appendString:apiTaskDes];
+            requestDescriptionModel.taskDescription = apiTaskDes;
         }
     }
     
@@ -237,15 +244,21 @@ nextStep_Req:;
         NSDateFormatter * df = [[NSDateFormatter alloc] init];
         [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSString *timeStr = [df stringFromDate:objc_getAssociatedObject(notification.object, TDFAPILoggerTakeOffDate)];
-        [frmtString appendFormat:@"\n<起飞时间>  %@", timeStr];
+        NSString *milestoneTimeDes = [NSString stringWithFormat:@"\n<起飞时间>  %@", timeStr];
+        [frmtString appendString:milestoneTimeDes];
+        requestDescriptionModel.milestoneTime = milestoneTimeDes;
     }
     
     if (self.requestLoggerElements & TDFAPILoggerRequestElementMethod) {
-        [frmtString appendFormat:@"\n<请求方式>  %@", request.HTTPMethod];
+        NSString *methodDes = [NSString stringWithFormat:@"\n<请求方式>  %@", request.HTTPMethod];
+        [frmtString appendString:methodDes];
+        requestDescriptionModel.method = methodDes;
     }
     
     if (self.requestLoggerElements & TDFAPILoggerRequestElementVaildURL) {
-        [frmtString appendFormat:@"\n<请求地址>  %@", [request.URL absoluteString]];
+        NSString *validURLDes = [NSString stringWithFormat:@"\n<请求地址>  %@", [request.URL absoluteString]];
+        [frmtString appendString:validURLDes];
+        requestDescriptionModel.validURL = validURLDes;
     }
     
     if (self.requestLoggerElements & TDFAPILoggerRequestElementHeaderFields) {
@@ -254,7 +267,9 @@ nextStep_Req:;
         [headerFields enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             [headerFieldFrmtStr appendFormat:@"\n\t\"%@\" = \"%@\"", key, obj];
         }];
-        [frmtString appendFormat:@"\n<HeaderFields>%@", headerFieldFrmtStr];
+        NSString *headerFieldsDes = [NSString stringWithFormat:@"\n<HeaderFields>%@", headerFieldFrmtStr];
+        [frmtString appendString:headerFieldsDes];
+        requestDescriptionModel.headerFields = headerFieldsDes;
     }
     
     if (self.requestLoggerElements & TDFAPILoggerRequestElementHTTPBody) {
@@ -267,13 +282,21 @@ nextStep_Req:;
         else if ([request HTTPBodyStream]) {
             NSInputStream *httpBodyStream = request.HTTPBodyStream;
             
+            __weak __typeof(self) w_self = self;
             TDFAPILoggerAsyncHttpBodyStreamParse(httpBodyStream, ^(NSData *streamData) {
+                __strong __typeof(w_self) s_self = w_self;
+                
                 httpBody = streamData;
-                [frmtString appendFormat:@"\n<Body>\n\t%@", httpBody];
+                NSString *httpBodyDes = [NSString stringWithFormat:@"\n<Body>\n\t%@", httpBody];
+                [frmtString appendString:httpBodyDes];
+                requestDescriptionModel.httpBody = httpBodyDes;
                 
-                TDFAPILoggerShowRequest([frmtString copy]);
+                NSString *logMsg = [frmtString copy];
+                TDFAPILoggerShowRequest(logMsg);
                 
-                !self.requestLogReporter ?: self.requestLogReporter([frmtString copy]);
+                requestDescriptionModel.selfDescription = logMsg;
+                
+                !s_self.requestLogReporter ?: s_self.requestLogReporter(requestDescriptionModel);
             });
             return;
         }
@@ -309,13 +332,18 @@ nextStep_Req:;
                 [httpBodyStr appendFormat:@"\n\t\"%@\" = \"%@\"", key, value];
             }];
             
-            [frmtString appendFormat:@"\n<Body>%@", httpBodyStr];
+            NSString *httpBodyDes = [NSString stringWithFormat:@"\n<Body>%@", httpBodyStr];
+            [frmtString appendString:httpBodyDes];
+            requestDescriptionModel.httpBody = httpBodyDes;
         }
     }
     
-    TDFAPILoggerShowRequest([frmtString copy]);
+    NSString *logMsg = [frmtString copy];
+    TDFAPILoggerShowRequest(logMsg);
     
-    !self.requestLogReporter ?: self.requestLogReporter([frmtString copy]);
+    requestDescriptionModel.selfDescription = logMsg;
+    
+    !self.requestLogReporter ?: self.requestLogReporter(requestDescriptionModel);
 }
 
 - (void)apiDidLand:(NSNotification *)notification {
@@ -346,6 +374,8 @@ nextStep_Req:;
 nextStep_Resp:;
     NSInteger responseStatusCode = 0;
     NSDictionary *responseHeaderFields = nil;
+    TDFALResponseModel *responseDescriptionModel = [[TDFALResponseModel alloc] init];
+    
     // NSHTTPURLResponse inherit NSURLResponse，it has statusCode and allHeaderFields prop..
     if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         responseStatusCode = [(NSHTTPURLResponse *)response statusCode];
@@ -358,7 +388,9 @@ nextStep_Resp:;
     
     if (self.responseLoggerElements & TDFAPILoggerResponseElementTaskIdentifier) {
         NSString *taskIdentifier = TDFAPILoggerTaskIdentifierFromAFNNotification(notification);
-        [frmtString appendFormat:@"\n<API序列号> %@", taskIdentifier];
+        NSString *taskIdentifierDes = [NSString stringWithFormat:@"\n<API序列号> %@", taskIdentifier];
+        [frmtString appendString:taskIdentifierDes];
+        responseDescriptionModel.taskIdentifier = taskIdentifierDes;
     }
     
     NSURLSessionTask *task = (NSURLSessionTask *)notification.object;
@@ -366,11 +398,15 @@ nextStep_Resp:;
     if (self.defaultTaskDescriptionObj) {
         NSString *taskDescriptionSetByAFN = [NSString stringWithFormat:@"%p", self.defaultTaskDescriptionObj];
         if (taskDescLength && ![task.taskDescription isEqualToString:taskDescriptionSetByAFN]) {
-            [frmtString appendFormat:@"\n<API描述>    %@", task.taskDescription];
+            NSString *apiTaskDes = [NSString stringWithFormat:@"\n<API描述>    %@", task.taskDescription];
+            [frmtString appendString:apiTaskDes];
+            responseDescriptionModel.taskDescription = apiTaskDes;
         }
     } else {
         if (taskDescLength) {
-            [frmtString appendFormat:@"\n<API描述>    %@", task.taskDescription];
+            NSString *apiTaskDes = [NSString stringWithFormat:@"\n<API描述>    %@", task.taskDescription];
+            [frmtString appendString:apiTaskDes];
+            responseDescriptionModel.taskDescription = apiTaskDes;
         }
     }
     
@@ -378,27 +414,37 @@ nextStep_Resp:;
         NSDateFormatter * df = [[NSDateFormatter alloc] init];
         [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSString *timeStr = [df stringFromDate:landDate];
-        [frmtString appendFormat:@"\n<着陆时间>  %@", timeStr];
+        NSString *milestoneTimeDes = [NSString stringWithFormat:@"\n<着陆时间>  %@", timeStr];
+        [frmtString appendString:milestoneTimeDes];
+        responseDescriptionModel.milestoneTime = milestoneTimeDes;
     }
     
     if (self.responseLoggerElements & TDFAPILoggerResponseElementTimeConsuming) {
         NSTimeInterval timeConsuming = [landDate timeIntervalSinceDate:objc_getAssociatedObject(notification.object, TDFAPILoggerTakeOffDate)];
         NSString *secondConsuming = [NSString stringWithFormat:@"%.3f秒", timeConsuming];
-        [frmtString appendFormat:@"\n<请求耗时>  %@", secondConsuming];
+        NSString *timeConsumingDes = [NSString stringWithFormat:@"\n<请求耗时>  %@", secondConsuming];
+        [frmtString appendString:timeConsumingDes];
+        responseDescriptionModel.timeConsuming = timeConsumingDes;
     }
     
     if (self.responseLoggerElements & TDFAPILoggerResponseElementMethod) {
-        [frmtString appendFormat:@"\n<请求方式>  %@", request.HTTPMethod];
+        NSString *methodDes = [NSString stringWithFormat:@"\n<请求方式>  %@", request.HTTPMethod];
+        [frmtString appendString:methodDes];
+        responseDescriptionModel.method = methodDes;
     }
     
     if (self.responseLoggerElements & TDFAPILoggerResponseElementStatusCode) {
         if (responseStatusCode) {
-            [frmtString appendFormat:@"\n<状态码>     %ld", responseStatusCode];
+            NSString *statusCodeDes = [NSString stringWithFormat:@"\n<状态码>     %ld", responseStatusCode];
+            [frmtString appendString:statusCodeDes];
+            responseDescriptionModel.statusCode = statusCodeDes;
         }
     }
     
     if (self.responseLoggerElements & TDFAPILoggerResponseElementVaildURL) {
-        [frmtString appendFormat:@"\n<请求地址>  %@", [request.URL absoluteString]];
+        NSString *validURLDes = [NSString stringWithFormat:@"\n<请求地址>  %@", [request.URL absoluteString]];
+        [frmtString appendString:validURLDes];
+        responseDescriptionModel.validURL = validURLDes;
     }
     
     if (self.responseLoggerElements & TDFAPILoggerResponseElementHeaderFields) {
@@ -407,13 +453,17 @@ nextStep_Resp:;
             [responseHeaderFields enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 [headerFieldFrmtStr appendFormat:@"\n\t\"%@\" = \"%@\"", key, obj];
             }];
-            [frmtString appendFormat:@"\n<HeaderFields>%@", headerFieldFrmtStr];
+            NSString *headerFieldsDes = [NSString stringWithFormat:@"\n<HeaderFields>%@", headerFieldFrmtStr];
+            [frmtString appendString:headerFieldsDes];
+            responseDescriptionModel.headerFields = headerFieldsDes;
         }
     }
     
     if (self.responseLoggerElements & TDFAPILoggerResponseElementResponse) {
         if (error) {
-            [frmtString appendFormat:@"\n<Error>\n\tErrorDomain = %@\n\tCode = %ld\n\tLocalizedDescription = %@", error.domain, error.code, error.localizedDescription];
+            NSString *errorDes = [NSString stringWithFormat:@"\n<Error>\n\tErrorDomain = %@\n\tCode = %ld\n\tLocalizedDescription = %@", error.domain, error.code, error.localizedDescription];
+            [frmtString appendString:errorDes];
+            responseDescriptionModel.error = errorDes;
         } else {
             // JSON pretty print format, by async to improve performance..
             id serializedResponse = notification.userInfo[AFNetworkingTaskDidCompleteSerializedResponseKey];
@@ -421,22 +471,32 @@ nextStep_Resp:;
             __weak __typeof(self) w_self = self;
             TDFAPILoggerAsyncJsonResponsePrettyFormat(serializedResponse, ^(id betterResponseString) {
                 __strong __typeof(w_self) s_self = w_self;
-                [frmtString appendFormat:@"\n<Response>\n%@", betterResponseString];
+                NSString *responseDes = [NSString stringWithFormat:@"\n<Response>\n%@", betterResponseString];
+                [frmtString appendString:responseDes];
+                responseDescriptionModel.response = responseDes;
                 
-                TDFAPILoggerShowResponse([frmtString copy]);
-                !s_self.responseLogReporter ?: s_self.responseLogReporter([frmtString copy]);
+                NSString *logMsg = [frmtString copy];
+                TDFAPILoggerShowResponse(logMsg);
+                
+                responseDescriptionModel.selfDescription = logMsg;
+                
+                !s_self.responseLogReporter ?: s_self.responseLogReporter(responseDescriptionModel);
             });
             return;
         }
     }
     
+    NSString *logMsg = [frmtString copy];
+    
     if (error) {
-        TDFAPILoggerShowError([frmtString copy]);
-        !self.errorLogReporter ?: self.errorLogReporter([frmtString copy]);
+        TDFAPILoggerShowError(logMsg);
     } else {
-        TDFAPILoggerShowResponse([frmtString copy]);
-        !self.responseLogReporter ?: self.responseLogReporter([frmtString copy]);
+        TDFAPILoggerShowResponse(logMsg);
     }
+    
+    responseDescriptionModel.selfDescription = logMsg;
+    
+    !self.responseLogReporter ?: self.responseLogReporter(responseDescriptionModel);
 }
 
 @end

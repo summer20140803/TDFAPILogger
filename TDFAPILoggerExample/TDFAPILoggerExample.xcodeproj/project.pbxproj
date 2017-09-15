@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182A5EEE1F6B71830076BBE6 /* TDFALBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A5EED1F6B71830076BBE6 /* TDFALBaseModel.m */; };
+		182A5EF11F6B74730076BBE6 /* TDFALRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A5EF01F6B74730076BBE6 /* TDFALRequestModel.m */; };
+		182A5EF41F6B748B0076BBE6 /* TDFALResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A5EF31F6B748B0076BBE6 /* TDFALResponseModel.m */; };
 		18FE4CD51F62795300ECAA1F /* TDFAPILoggerExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4CD41F62795300ECAA1F /* TDFAPILoggerExampleTests.m */; };
 		18FE4CF11F6280A000ECAA1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4CE11F6280A000ECAA1F /* AppDelegate.m */; };
 		18FE4CF21F6280A000ECAA1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FE4CE21F6280A000ECAA1F /* Assets.xcassets */; };
@@ -32,6 +35,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		182A5EEC1F6B71820076BBE6 /* TDFALBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDFALBaseModel.h; sourceTree = "<group>"; };
+		182A5EED1F6B71830076BBE6 /* TDFALBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDFALBaseModel.m; sourceTree = "<group>"; };
+		182A5EEF1F6B74730076BBE6 /* TDFALRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDFALRequestModel.h; sourceTree = "<group>"; };
+		182A5EF01F6B74730076BBE6 /* TDFALRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDFALRequestModel.m; sourceTree = "<group>"; };
+		182A5EF21F6B748B0076BBE6 /* TDFALResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDFALResponseModel.h; sourceTree = "<group>"; };
+		182A5EF31F6B748B0076BBE6 /* TDFALResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDFALResponseModel.m; sourceTree = "<group>"; };
 		18FE4CB71F62795300ECAA1F /* TDFAPILoggerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDFAPILoggerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FE4CD01F62795300ECAA1F /* TDFAPILoggerExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TDFAPILoggerExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FE4CD41F62795300ECAA1F /* TDFAPILoggerExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDFAPILoggerExampleTests.m; sourceTree = "<group>"; };
@@ -146,6 +155,12 @@
 			children = (
 				18FE4CEC1F6280A000ECAA1F /* TDFAPILogger.h */,
 				18FE4CED1F6280A000ECAA1F /* TDFAPILogger.m */,
+				182A5EEC1F6B71820076BBE6 /* TDFALBaseModel.h */,
+				182A5EED1F6B71830076BBE6 /* TDFALBaseModel.m */,
+				182A5EEF1F6B74730076BBE6 /* TDFALRequestModel.h */,
+				182A5EF01F6B74730076BBE6 /* TDFALRequestModel.m */,
+				182A5EF21F6B748B0076BBE6 /* TDFALResponseModel.h */,
+				182A5EF31F6B748B0076BBE6 /* TDFALResponseModel.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -376,9 +391,12 @@
 			files = (
 				18FE4CF71F6280A000ECAA1F /* ViewController.m in Sources */,
 				18FE4CF91F6280A000ECAA1F /* TDFAPILoggerTrigger.m in Sources */,
+				182A5EF41F6B748B0076BBE6 /* TDFALResponseModel.m in Sources */,
 				18FE4CF81F6280A000ECAA1F /* TDFAPILogger.m in Sources */,
 				18FE4CF61F6280A000ECAA1F /* main.m in Sources */,
+				182A5EEE1F6B71830076BBE6 /* TDFALBaseModel.m in Sources */,
 				18FE4CF11F6280A000ECAA1F /* AppDelegate.m in Sources */,
+				182A5EF11F6B74730076BBE6 /* TDFALRequestModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TDFALRequestModel.h"
+#import "TDFALResponseModel.h"
 
 //======================================
 // 运行期可通过LLDB `expr`命令实时修改的变量
@@ -98,25 +100,21 @@ typedef NS_OPTIONS(NSUInteger, TDFAPILoggerResponseElement) {
 
 /**
  API请求日志汇报者，
- 会在格式化后(不包括emoji)的请求日志通过这个block传给外部，
- 交给TDFScreenDebugger使用
+ 会在格式化后(不包括emoji)的请求描述模型通过这个block传给外部
  */
-@property (nonatomic,   copy) void(^requestLogReporter)(NSString *requestLog);
+@property (nonatomic,   copy) void(^requestLogReporter)(TDFALRequestModel *requestLogDescription);
 
 /**
  API响应日志汇报者，
- 会在格式化后(不包括emoji)的成功响应通过这个block传给外部，
- 交给TDFScreenDebugger使用
+ 会在格式化后(不包括emoji)的响应描述模型通过这个block传给外部
  */
-@property (nonatomic,   copy) void(^responseLogReporter)(NSString *responseLog);
+@property (nonatomic,   copy) void(^responseLogReporter)(TDFALResponseModel *responseLogDescription);
+
 
 /**
- API异常日志汇报者，
- 会在格式化后(不包括emoji)的异常通过这个block传给外部，
- 交给TDFScreenDebugger使用
+ 获取单例
+ @return 单例
  */
-@property (nonatomic,   copy) void(^errorLogReporter)(NSString *errorLog);
-
 + (instancetype)sharedInstance;
 
 /**
