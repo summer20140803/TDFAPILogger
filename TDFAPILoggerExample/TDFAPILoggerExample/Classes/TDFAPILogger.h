@@ -40,7 +40,7 @@ typedef NS_OPTIONS(NSUInteger, TDFAPILoggerRequestElement) {
     /** API请求体(一般是入参) */
     TDFAPILoggerRequestElementHTTPBody           = 1 << 4,
     /** API任务唯一标识 */
-    TDFAPILoggerRequestElementTaskIdentifier     = 1 << 5,
+    TDFAPILoggerRequestElementTaskIdentifier      = 1 << 5,
 };
 
 typedef NS_OPTIONS(NSUInteger, TDFAPILoggerResponseElement) {
@@ -59,7 +59,7 @@ typedef NS_OPTIONS(NSUInteger, TDFAPILoggerResponseElement) {
     /** API响应主体(或者异常) */
     TDFAPILoggerResponseElementResponse          = 1 << 6,
     /** API任务唯一标识 */
-    TDFAPILoggerResponseElementTaskIdentifier    = 1 << 7,
+    TDFAPILoggerResponseElementTaskIdentifier     = 1 << 7,
 };
 
 
@@ -118,13 +118,12 @@ typedef NS_OPTIONS(NSUInteger, TDFAPILoggerResponseElement) {
 + (instancetype)sharedInstance;
 
 /**
- 开启API日志
+ 开启API日志(默认自动会开启)
  */
 - (void)open;
 
 /**
  关闭API日志
- (一般不需要这么做)
  */
 - (void)close;
 

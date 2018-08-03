@@ -135,6 +135,17 @@ static void TDFAPILoggerShowError(NSString *fmrtStr) {
 
 @implementation TDFAPILogger
 
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __weak NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        __block id noti_observer = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+            [[TDFAPILogger sharedInstance] open];
+            [center removeObserver:noti_observer];
+        }];
+    });
+}
+
 + (instancetype)sharedInstance {
     static TDFAPILogger *logger = nil;
     static dispatch_once_t once = 0;
