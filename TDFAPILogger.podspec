@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.license      = "LICENSE"
   s.author       = { '开不了口的猫' => 'summer20140803@gmail.com' }
-  s.source       = { :git => "https://github.com/summer20140803/TDFAPILogger.git', tag: s.version }
+  s.source       = { :git => 'https://github.com/summer20140803/TDFAPILogger.git', tag: s.version }
 
 s.ios.deployment_target = '9.0'
 s.source_files = 'TDFAPILoggerExample/TDFAPILoggerExample/Classes/**/*.{h,m}'
