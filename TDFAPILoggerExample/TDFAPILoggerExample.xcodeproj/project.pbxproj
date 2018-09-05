@@ -196,8 +196,6 @@
 				18FE4CB31F62795300ECAA1F /* Sources */,
 				18FE4CB41F62795300ECAA1F /* Frameworks */,
 				18FE4CB51F62795300ECAA1F /* Resources */,
-				720D5E72CE86736594FC1666 /* [CP] Embed Pods Frameworks */,
-				5A1186D3648A391B397E0CAE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -216,8 +214,6 @@
 				18FE4CCC1F62795300ECAA1F /* Sources */,
 				18FE4CCD1F62795300ECAA1F /* Frameworks */,
 				18FE4CCE1F62795300ECAA1F /* Resources */,
-				2A8DC57973A8E339A6E0B092 /* [CP] Embed Pods Frameworks */,
-				CE310475887ED7A20A013DB2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -292,79 +288,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2A8DC57973A8E339A6E0B092 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TDFAPILoggerExampleTests/Pods-TDFAPILoggerExampleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5A1186D3648A391B397E0CAE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TDFAPILoggerExample/Pods-TDFAPILoggerExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		720D5E72CE86736594FC1666 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TDFAPILoggerExample/Pods-TDFAPILoggerExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CE310475887ED7A20A013DB2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TDFAPILoggerExampleTests/Pods-TDFAPILoggerExampleTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E12307A29385256844A9323B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TDFAPILoggerExampleTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E17756B4A683AFE3B3307586 /* [CP] Check Pods Manifest.lock */ = {
@@ -373,13 +312,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TDFAPILoggerExample-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -536,7 +478,7 @@
 				DEVELOPMENT_TEAM = 6K3MJR566S;
 				INFOPLIST_FILE = "$(SRCROOT)/TDFAPILoggerExample/AppBase/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = szy.independent.TDFAPILoggerExample;
+				PRODUCT_BUNDLE_IDENTIFIER = silentcat.independent.TDFAPILoggerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -549,7 +491,7 @@
 				DEVELOPMENT_TEAM = 6K3MJR566S;
 				INFOPLIST_FILE = "$(SRCROOT)/TDFAPILoggerExample/AppBase/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = szy.independent.TDFAPILoggerExample;
+				PRODUCT_BUNDLE_IDENTIFIER = silentcat.independent.TDFAPILoggerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
